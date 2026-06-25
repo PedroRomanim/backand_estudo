@@ -1,0 +1,60 @@
+Backup of previous main.py
+
+Original content:
+
+tarefas = []
+# Pergunta ao usuário se ele quer adicionar uma nova tarefa.
+print("Deseja adicionar alguma tarefa? (s/n)")
+resposta = input().lower()  # normaliza a resposta para minúsculas
+
+if resposta == 's':
+    # Se a resposta for sim, pede a tarefa e adiciona à lista.
+    print("Digite a tarefa:")
+    tarefa = input()
+
+    tarefas.append(tarefa)
+
+    print(f"Tarefa '{tarefa}' adicionada com sucesso!")
+else:
+    # Se não for sim, não faz nada e apenas informa o usuário.
+    print("Nenhuma tarefa adicionada.")
+
+# Pergunta ao usuário se ele quer remover uma tarefa já existente.
+print("\nDeseja remover alguma tarefa? (s/n)")
+resposta = input().lower()  # normaliza a resposta para minúsculas
+
+if resposta == 's':
+    # Se a resposta for sim, pede o nome da tarefa para remoção.
+    print("Digite a tarefa a ser removida:")
+    tarefa = input()
+
+    if tarefa in tarefas:
+        # Remove a tarefa somente se ela estiver na lista.
+        tarefas.remove(tarefa)
+        print(f"Tarefa '{tarefa}' removida com sucesso!")
+    else:
+        # Se a tarefa não estiver na lista, informa o usuário.
+        print("Tarefa não encontrada.")
+else:
+    print("Nenhuma tarefa removida.")
+
+print("\nConcluiu alguma tarefa? (s/n)")
+resposta = input().lower()  # normaliza a resposta para minúsculas
+if resposta == 's':
+    # Se a resposta for sim, pede o nome da tarefa para marcar como concluída.
+    print("Digite a tarefa que você concluiu:")
+    tarefa = input()
+
+    if tarefa in tarefas:
+        # Marca a tarefa como concluída (neste caso, apenas remove da lista).
+        tarefas.remove(tarefa)
+        print(f"Tarefa '{tarefa}' marcada como concluída e removida da lista!")
+    else:
+        # Se a tarefa não estiver na lista, informa o usuário.
+        print("Tarefa não encontrada.")
+
+# Exibe todas as tarefas que permanecem na lista.
+print("\nEssas são as tarefas atuais:")
+
+for tarefa in tarefas:
+    print(f"- {tarefa}")
