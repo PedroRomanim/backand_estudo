@@ -4,9 +4,9 @@ class Livros:
         self.autor = autor
         self.isbn = isbn
     
-    def info(self):
+    def livro_info(self):
         return f"Nome: {self.nome}, Autor: {self.autor}, ISBN: {self.isbn}"
-
+            
 
 class Biblioteca:
     def __init__(self):
@@ -32,6 +32,12 @@ class Biblioteca:
             for livro in self.livros:
                 print(f"- {livro.nome} por {livro.autor} (ISBN: {livro.isbn})")
 
+    def buscar_livro_por_nome(self, nome):
+        for livro in self.livros:
+            if livro.nome == nome:
+                return livro.livro_info()
+        return "Livro não encontrado."
+
 
 livro_gatos = Livros("Gatos: Guia Completo", "John Doe", "1234567890")
 livro_cachorros = Livros("Cachorros: Guia Completo", "Jane Smith", "0987654321")
@@ -40,4 +46,3 @@ adicionar_livro = Biblioteca()
 adicionar_livro.adicionar_livro(livro_gatos)
 adicionar_livro.adicionar_livro(livro_cachorros)   
 
-print(listar_livros := adicionar_livro.listar_livros())
