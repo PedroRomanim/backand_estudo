@@ -34,7 +34,7 @@ class Biblioteca:
 
     def buscar_livro_por_nome(self, nome):
         for livro in self.livros:
-            if livro.nome == nome:
+            if livro.nome.lower() == nome.lower():
                 return livro.livro_info()
         return "Livro não encontrado."
 
@@ -42,7 +42,7 @@ class Biblioteca:
 livro_gatos = Livros("Gatos: Guia Completo", "John Doe", "1234567890")
 livro_cachorros = Livros("Cachorros: Guia Completo", "Jane Smith", "0987654321")
 
-adicionar_livro = Biblioteca()
-adicionar_livro.adicionar_livro(livro_gatos)
-adicionar_livro.adicionar_livro(livro_cachorros)   
-
+biblioteca = Biblioteca()
+biblioteca.adicionar_livro(livro_gatos) 
+biblioteca.adicionar_livro(livro_cachorros)
+print(biblioteca.buscar_livro_por_nome("Gatos: Guia Completo"))
