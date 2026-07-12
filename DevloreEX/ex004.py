@@ -1,8 +1,9 @@
-import pyfiglet
+#Imports
+#import pyfiglet
 
+
+#Funcoes
 def menu():
-    logo = pyfiglet.figlet_format("\nCofrinho Digital!", font='Slant')
-    print(logo)
     print("|---MENU---")
     print("|---[1]-Depositar---")
     print("|---[2]-Sacar---")
@@ -22,36 +23,52 @@ def retorno_menu():
     input("\nPressione Enter para retornar ao menu!")  
 
 
+def depositar():
+    global saldo_usuario
+    valor = float(input("Qual o valor desejado: "))
+    if valor > 0:
+        saldo_usuario += valor
+        print(f"Deposito feito com sucesso! No valor de: {valor:.2f} R$")   
+        retorno_menu()
+    else:
+        mensagem("Erro ao efetuar o deposito")
+        retorno_menu()
 
+def saque():
+        global saldo_usuario
+        valor_saque = float(input("Qual valor que deseja sacar: "))
+        if valor_saque <= 0:
+            mensagem("O valor do saque deve ser maior que zero!")
+            retorno_menu()
+        elif valor_saque > saldo_usuario:
+            mensagem("Saldo insuficiente!")
+            retorno_menu()
+        else:
+            saldo_usuario -= valor_saque
+            mensagem("Saque realizado com sucesso!")
+            retorno_menu()
+
+def mostrar_saldo():
+    linha()
+    print(f"Seu saldo é de R${saldo_usuario:.2f}!")
+    linha()
+    retorno_menu()  
+
+
+#Variaveis
 saldo_usuario = 0
 opcoes_menu = ""
+
+#logo = pyfiglet.figlet_format("\nCofrinho Digital!", font='Slant')
 
 while opcoes_menu != "4":
     opcoes_menu = menu()
     if opcoes_menu == "1":
-        depositar = float(input("Qual o valor desejado: "))
-        if depositar > 0:
-          saldo_usuario += depositar
-          print(f"Deposito feito com sucesso! No valor de: {depositar:.2f} R$")   
-          retorno_menu()   
-        else:
-            mensagem("Erro ao efetuar o deposito")
-            retorno_menu()
+       depositar()
     elif opcoes_menu == "2":
-        saque = float(input("Qual valor que deseja sacar: "))
-        
-        if saque > saldo_usuario:
-            mensagem("Saldo insuficiente!")
-            retorno_menu()
-        else:
-            saldo_usuario -= saque
-            mensagem("Saque realizado com sucesso!")
-            retorno_menu()
+        saque()
     elif opcoes_menu == "3":
-        linha()
-        print(f"Seu saldo e de R${saldo_usuario:.2f}!")
-        linha()
-        retorno_menu()    
+        mostrar_saldo()
     elif opcoes_menu == "4":
         break
     
