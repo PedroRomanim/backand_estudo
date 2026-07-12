@@ -1,5 +1,5 @@
 #Imports
-#import pyfiglet
+import pyfiglet
 
 
 #Funcoes
@@ -25,27 +25,35 @@ def retorno_menu():
 
 def depositar():
     global saldo_usuario
-    valor = float(input("Qual o valor desejado: "))
-    if valor > 0:
-        saldo_usuario += valor
-        print(f"Deposito feito com sucesso! No valor de: {valor:.2f} R$")   
-        retorno_menu()
-    else:
-        mensagem("Erro ao efetuar o deposito")
+    try:
+        valor = float(input("Qual o valor desejado: "))
+        if valor > 0:
+            saldo_usuario += valor
+            print(f"Deposito feito com sucesso! No valor de: {valor:.2f} R$")   
+            retorno_menu()
+        else:
+            mensagem("Erro ao efetuar o deposito")
+            retorno_menu()
+    except ValueError:
+        mensagem("Por Favor digite apenas numeros!")
         retorno_menu()
 
 def saque():
         global saldo_usuario
-        valor_saque = float(input("Qual valor que deseja sacar: "))
-        if valor_saque <= 0:
-            mensagem("O valor do saque deve ser maior que zero!")
-            retorno_menu()
-        elif valor_saque > saldo_usuario:
-            mensagem("Saldo insuficiente!")
-            retorno_menu()
-        else:
-            saldo_usuario -= valor_saque
-            mensagem("Saque realizado com sucesso!")
+        try:
+            valor_saque = float(input("Qual valor que deseja sacar: "))
+            if valor_saque <= 0:
+                mensagem("O valor do saque deve ser maior que zero!")
+                retorno_menu()
+            elif valor_saque > saldo_usuario:
+                mensagem("Saldo insuficiente!")
+                retorno_menu()
+            else:
+                saldo_usuario -= valor_saque
+                mensagem("Saque realizado com sucesso!")
+                retorno_menu()
+        except ValueError:
+            mensagem("Por Favor digite apenas numeros!")
             retorno_menu()
 
 def mostrar_saldo():
@@ -58,8 +66,9 @@ def mostrar_saldo():
 #Variaveis
 saldo_usuario = 0
 opcoes_menu = ""
+logo = pyfiglet.figlet_format("\nCofrinho Digital!", font='Slant')
 
-#logo = pyfiglet.figlet_format("\nCofrinho Digital!", font='Slant')
+print(logo)
 
 while opcoes_menu != "4":
     opcoes_menu = menu()
