@@ -19,7 +19,7 @@ def mensagem(texto):
     linha()
 
 def retorno_menu():
-    input("\nPressione Enter para retonar ao menu!")  
+    input("\nPressione Enter para retornar ao menu!")  
 
 
 
